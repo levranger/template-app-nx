@@ -1,7 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "plugins": ["@nx", "import", "react"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -18,18 +17,60 @@
               }
             ]
           }
-        ]
+        ],
+        "no-console": "error",
+        "no-debugger": "error",
+        "no-unused-vars": "error",
+        "import/no-unused-modules": "error",
+        "import/no-extraneous-dependencies": "error",
+        "import/order": [
+          "error",
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "internal",
+              "parent",
+              "sibling",
+              "index"
+            ],
+            "newlines-between": "always"
+          }
+        ],
+        "max-len": ["warn", { "code": 120 }],
+        "indent": ["error", 2, { "SwitchCase": 1 }],
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "jsx-quotes": ["error", "prefer-double"],
+        "comma-dangle": [
+          "error",
+          {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "ignore"
+          }
+        ],
+        "object-curly-spacing": ["error", "always"],
+        "react/jsx-closing-bracket-location": ["error", "line-aligned"],
+        "arrow-parens": ["error", "as-needed"],
+        "linebreak-style": ["error", "unix"]
       }
     },
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "max-len": ["warn", { "code": 120 }],
+        "indent": ["error", 2, { "SwitchCase": 1 }],
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "arrow-parens": ["error", "as-needed"],
+        "linebreak-style": ["error", "unix"]
+      }
     }
   ]
 }

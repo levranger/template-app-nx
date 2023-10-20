@@ -1,24 +1,21 @@
 trigger:
-- main
-
-pr:
-- '*'
+  - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: Build
-  jobs:
-  - job: InstallAndLint
-    steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '20.x'
-      displayName: 'Install Node.js'
+  - stage: Build
+    jobs:
+      - job: InstallAndLint
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '20.x'
+            displayName: 'Install Node.js'
 
-    - script: npm install
-      displayName: 'Install Node Modules'
+          - script: npm install
+            displayName: 'Install Node Modules'
 
-    - script: npm run lint
-      displayName: 'Run Lint'
+          - script: npm run lint
+            displayName: 'Run Lint'
